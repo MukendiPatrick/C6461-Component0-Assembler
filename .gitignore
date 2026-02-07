@@ -1,0 +1,14 @@
+# Compiled class files
+*.class
+out/
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+
+# MacOS files
+.DS_Store
+
+# Test output files
+*.lst
+*.load
