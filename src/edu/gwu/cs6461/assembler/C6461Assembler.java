@@ -295,10 +295,19 @@ public class C6461Assembler {
      */
     private int parseAddress(SourceLine line, int index) {
         String operand = line.getOperand(index);
+
+        // Check if it's a label first
         if (symbolTable.containsKey(operand)) {
             return symbolTable.get(operand);
         }
-        return Integer.parseInt(operand);
+
+        // Try to parse as integer
+        try {
+            return Integer.parseInt(operand);
+        } catch (NumberFormatException e) {
+            // If it's not a number and not in symbol table, it's an undefined label
+            throw new RuntimeException("Undefined label: " + operand);
+        }
     }
 
     /**
